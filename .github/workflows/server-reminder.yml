@@ -1,15 +1,15 @@
-name: Recordatorio para actualización en servidores
+name: 🛠️ Revisión obligatoria
 
 on:
   pull_request:
 
 jobs:
-  mostrar-recordatorio:
+  recordatorio:
+    name: ⚠️ Revisión de despliegue
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del código
-        uses: actions/checkout@v3
-    
-      - name: Recordatorio
+      - name: 🟡 Actualizar servidores
         run: |
-          echo "⚠️ Recuerda actualizar en todos los servidores."
+          echo ""
+          echo -e "\033[1;33m⚠️  RECUERDA: Debes actualizar los cambios en todos los servidores.\033[0m"
+          echo ""
