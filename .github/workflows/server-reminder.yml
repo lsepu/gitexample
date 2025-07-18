@@ -1,0 +1,15 @@
+name: Recordatorio para actualización en servidores
+
+on:
+  push:
+    branches:
+      - '**'   # Se ejecuta en todos los branches
+  pull_request:
+
+jobs:
+  mostrar-recordatorio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recordatorio
+        run: |
+          echo "Recuerda actualizar en todos los servidores."
