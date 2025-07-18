@@ -5,7 +5,7 @@ on:
 
 jobs:
   recordatorio:
-    name: ⚠️ Revisión de despliegue
+    name: ⚠️  RECUERDA Debes actualizar los cambios en todos los servidores
     runs-on: ubuntu-latest
     steps:
       - name: 🟡 Actualizar servidores
