@@ -1,15 +1,23 @@
-name: 🛠️ Revisión obligatoria
+name: ❌ Validar checkbox de servidores
 
 on:
   pull_request:
+    types: [opened, edited, synchronize]
 
 jobs:
-  recordatorio:
-    name: ⚠️  RECUERDA Debes actualizar los cambios en todos los servidores
+  validar-checkbox:
+    name: 🚨 Verificar confirmación de despliegue
     runs-on: ubuntu-latest
     steps:
-      - name: 🟡 Actualizar servidores
-        run: |
-          echo ""
-          echo -e "\033[1;33m⚠️  RECUERDA: Debes actualizar los cambios en todos los servidores.\033[0m"
-          echo ""
+      - name: 📋 Obtener contenido del PR
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prBody = context.payload.pull_request.body;
+            const marcado = /- \[x\] ✅ Confirmo que los cambios han sido actualizados en todos los servidores/i.test(prBody || '');
+            if (!marcado) {
+              core.setFailed("❌ El checkbox de confirmación no está marcado. Por favor márcalo antes de hacer merge.");
+            } else {
+              console.log("✅ Checkbox marcado. Todo bien.");
+            }
